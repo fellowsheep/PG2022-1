@@ -132,7 +132,7 @@ int main()
 		glm::mat4 model = glm::mat4(1); //matriz identidade
 		model = glm::translate(model, glm::vec3(400.0, 300.0, 0));
 		model = glm::rotate(model, (float)glfwGetTime() /*glm::radians(90.0f)*/, glm::vec3(0, 0, 1));
-		model = glm::scale(model, glm::vec3(200.0, 200.0, 1.0));
+		model = glm::scale(model, glm::vec3(500.0, 500.0, 1.0));
 		GLint modelLoc = glGetUniformLocation(shader.ID, "model");
 		glUniformMatrix4fv(modelLoc, 1, FALSE, glm::value_ptr(model));
 
@@ -145,7 +145,9 @@ int main()
 		// Observe que como  usamos EBO, agora usamos a glDrawElements!
 		glBindVertexArray(VAO);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		
 		glBindVertexArray(0); //unbind - desconecta
+		glBindTexture(GL_TEXTURE_2D, 0); //unbind da textura
 
 		// Troca os buffers da tela
 		glfwSwapBuffers(window);
